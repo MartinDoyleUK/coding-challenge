@@ -3,6 +3,16 @@
     position: relative;
   }
 
+  &__label {
+    font-size: 13px;
+    margin: 0 0 8px;
+  }
+
+  &__input-container {
+    display: flex;
+    align-items: center;
+  }
+
   &__input {
     border: 1px solid #ccc;
     font-size: 12px;
@@ -10,6 +20,7 @@
     padding: 0 5px;
     width: 200px;
     outline: none;
+    margin-right: 3px;
     transition: border-color 0.5s linear, background 0.5s ease-out;
 
     &--confirmed,

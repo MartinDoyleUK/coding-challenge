@@ -1,4 +1,5 @@
 import React from 'react';
+import Spinner from 'react-svg-spinner';
 
 import './dropdown.css';
 
@@ -9,6 +10,7 @@ export interface OwnProps extends React.Props<Dropdown> {
   isConfirmed: boolean;
   isLoading: boolean;
   label: string;
+  placeholder: string;
   searchString: string;
   selectItem: (item: string) => void;
 }
@@ -31,16 +33,6 @@ class Dropdown extends React.Component<OwnProps, OwnState> {
     }
   }
 
-  public componentDidUpdate() {
-    console.log(`componentDidUpdate new-props:
-${JSON.stringify(this.props, null, 2)}`);
-  }
-
-  public componentWillMount() {
-    console.log(`componentWillMount props:
-${JSON.stringify(this.props, null, 2)}`);
-  }
-
   public componentWillUpdate(prevProps: OwnProps) {
     if (prevProps.searchString !== this.props.searchString) {
       this.setState(prevState => ({ ...prevState, highlightedIndex: -1 }));
@@ -48,19 +40,24 @@ ${JSON.stringify(this.props, null, 2)}`);
   }
 
   public render() {
-    const { searchString, isConfirmed, label } = this.props;
+    const { searchString, isConfirmed, isLoading, label, placeholder } = this.props;
     return (
-      <div className={'dropdown__container'}>
-        <h4>{label}</h4>
-        <input
-          type="text"
-          className={isConfirmed ? 'dropdown__input dropdown__input--confirmed' : 'dropdown__input'}
-          onChange={this.handleInput}
-          onKeyDown={this.handleInputKeyDown}
-          placeholder="Search..."
-          value={searchString}
-          ref={this.input}
-        />
+      <div className="dropdown__container">
+        <div className="dropdown__label">{label}</div>
+        <div className="dropdown__input-container">
+          <input
+            type="text"
+            className={
+              isConfirmed ? 'dropdown__input dropdown__input--confirmed' : 'dropdown__input'
+            }
+            onChange={this.handleInput}
+            onKeyDown={this.handleInputKeyDown}
+            placeholder={placeholder}
+            value={searchString}
+            ref={this.input}
+          />
+          {isLoading && <Spinner />}
+        </div>
         {this.renderError()}
         {this.renderDropdown()}
       </div>

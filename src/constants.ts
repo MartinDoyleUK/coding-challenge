@@ -1,1 +1,1 @@
-export const simulatedApiDelayMs = 500;
+export const simulatedApiDelayMs = 250;

@@ -36,7 +36,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 
 class CountriesDropdown extends React.Component<ContainerProps> {
   public render() {
-    return <Dropdown label="Please choose a country" {...this.props} />;
+    return <Dropdown label="Please choose a country" placeholder="Search..." {...this.props} />;
   }
 }
 
