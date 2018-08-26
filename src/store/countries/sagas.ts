@@ -23,11 +23,15 @@ const suggestCountries = (searchString: string): string[] => {
 
 function* handleSearchRequest(action: AnyAction) {
   try {
-    const [suggestedCountries] = yield all([
-      call(suggestCountries, action.payload),
-      call(delay, simulatedApiDelayMs),
-    ]);
-    yield put(countrySearchSuccess(suggestedCountries));
+    if (action.payload === '') {
+      yield put(countrySearchSuccess([]));
+    } else {
+      const [suggestedCountries] = yield all([
+        call(suggestCountries, action.payload),
+        call(delay, simulatedApiDelayMs),
+      ]);
+      yield put(countrySearchSuccess(suggestedCountries));
+    }
   } catch (e) {
     console.error('Error searching for country', e);
     yield put(countrySearchFailure(e));
