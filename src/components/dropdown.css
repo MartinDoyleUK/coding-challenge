@@ -1,7 +1,7 @@
-.countries__container {
+.dropdown__container {
   position: relative; }
 
-.countries__input {
+.dropdown__input {
   border: 1px solid #ccc;
   font-size: 12px;
   line-height: 24px;
@@ -9,22 +9,27 @@
   width: 200px;
   outline: none;
   transition: border-color 0.5s linear, background 0.5s ease-out; }
-  .countries__input--confirmed, .countries__input--confirmed {
+  .dropdown__input--confirmed, .dropdown__input--confirmed {
     border-color: #0c0;
     background: #fafffa; }
 
-.countries__dropdown {
+.dropdown__items {
   position: absolute;
   top: 100%;
   min-width: 200px;
   border: 1px solid #ccc; }
-  .countries__dropdown__item {
+  .dropdown__items__item {
     font-size: 12px;
     cursor: pointer;
     padding: 0 5px;
     line-height: 24px;
     border-top: 1px solid #eee;
     transition: background-color 0.2s ease-out; }
-    .countries__dropdown__item--highlighted {
+    .dropdown__items__item--highlighted {
       background-color: #ccc;
       border-top-color: #ccc; }
+
+.dropdown__error {
+  font-size: 12px;
+  color: #e00;
+  line-height: 24px; }
