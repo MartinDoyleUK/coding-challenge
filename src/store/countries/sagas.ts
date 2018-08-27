@@ -3,23 +3,9 @@ import { delay } from 'redux-saga';
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 
 import { simulatedApiDelayMs } from '../../constants';
-import { allCountries } from '../../data';
+import { suggestCountries } from '../../data';
 import { countrySearchFailure, countrySearchSuccess } from './actions';
 import { CountriesActionTypes } from './types';
-
-interface Country {
-  name: string;
-  normalized: string;
-}
-
-const suggestCountries = (searchString: string): string[] => {
-  if (searchString.trim().length === 0) {
-    return [];
-  }
-  return allCountries
-    .filter(({ normalized }: Country): boolean => normalized.startsWith(searchString.toLowerCase()))
-    .map(({ name }: Country) => name);
-};
 
 function* handleSearchRequest(action: AnyAction) {
   try {
