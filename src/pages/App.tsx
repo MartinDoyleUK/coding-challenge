@@ -17,7 +17,7 @@ class App extends React.Component<OwnProps> {
     return (
       <Provider store={this.props.store}>
         <div className="app">
-          <h1>Byhiras coding test</h1>
+          <h1>Coding challenge</h1>
           <div className="delay-notice">
             Simulated API delay currently set to {simulatedApiDelayMs}
             ms
